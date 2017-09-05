@@ -1,0 +1,3 @@
+DEBUG=nodejs-server-poc:*
+PORT=3001
+JWT_SECRET_KEY=sdfjnmksndfsdf&545645#"
