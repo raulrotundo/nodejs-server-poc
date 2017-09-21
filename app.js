@@ -1,13 +1,11 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 dotenv.load();
-
-var index = require('./routes/index');
-var auth = require('./routes/auth');
 
 var app = express();
 
@@ -25,6 +23,14 @@ app.use(function (req, res, next) {
   next();
 });
 
+mongoose.connect(process.env.MONGODB_URI, {
+  useMongoClient: true,
+  promiseLibrary: global.Promise
+});
+
+var index = require('./routes/index');
+var auth = require('./routes/auth');
+
 app.use('/api', index);
 app.use('/api/authenticate', auth);
 
@@ -37,8 +43,7 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.json({
+  res.status(err.status || 500).json({
     message: err.message,
     error: err
   });
