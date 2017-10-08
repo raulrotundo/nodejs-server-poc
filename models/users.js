@@ -7,6 +7,7 @@ var schema = new Schema({
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true, trim: true },
   role: { type: String, required: true, trim: true },
+  status: { type: String, required: true, trim: true },
   created_at: Date,
   updated_at: Date
 });
