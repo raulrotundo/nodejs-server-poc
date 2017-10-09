@@ -26,6 +26,13 @@ router.post('/', (req, res) => {
         }
       });
       return;
+    } else if (user.status !== 'active') {
+      res.status(403).json({
+        errors: {
+          msg: 'User inactive. Please activate your existing account or contact the administrator.'
+        }
+      });
+      return;
     }
 
     bcrypt.compare(req.body.password, user.password, function (error, result) {
