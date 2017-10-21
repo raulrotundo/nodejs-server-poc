@@ -73,4 +73,20 @@ router.post('/', (req, res) => {
   });
 });
 
+router.post('/isLoggedIn', (req, res) => {
+  var token = req.body.token;
+  jwt.verify(token, process.env.JWT_SECRET_KEY, function (err, decoded) {
+    if (err) {
+      res.status(401).json({
+        isLoggedIn: false,
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        isLoggedIn: true
+      });
+    }
+  });
+});
+
 module.exports = router;
