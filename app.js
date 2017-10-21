@@ -30,9 +30,14 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 var index = require('./routes/index');
 var auth = require('./routes/auth');
+var products = require('./routes/products');
 
+// Index route
 app.use('/api', index);
+// Authentication routes
 app.use('/api/authenticate', auth);
+// Product Routes
+app.use('/api/products', products);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
