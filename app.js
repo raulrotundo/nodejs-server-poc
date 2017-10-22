@@ -41,6 +41,8 @@ app.use('/api/authenticate', auth);
 app.use('/api/products', products);
 // Customer Routes
 app.use('/api/customers', customers);
+// Countries Routes
+app.use('/api/countries', countries);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
