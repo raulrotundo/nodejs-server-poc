@@ -32,6 +32,7 @@ var index = require('./routes/index');
 var auth = require('./routes/auth');
 var products = require('./routes/products');
 var customers = require('./routes/customers');
+var countries = require('./routes/countries');
 
 // Index route
 app.use('/api', index);
