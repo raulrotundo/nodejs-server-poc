@@ -9,7 +9,12 @@ var schema = new Schema({
     zipcode: { type: String, trim: true },
     city: { type: String, trim: true },
     state: { type: String, trim: true },
-    country: { type: String, trim: true }
+    country: {
+      _id: { type: String, required: true },
+      code: { type: String, required: true },
+      name: { type: String, required: true },
+      status: { type: String, required: true, trim: true }
+    }
   },
   status: { type: String, required: true, trim: true },
   created_at: Date,
