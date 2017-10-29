@@ -16,7 +16,7 @@ router.get('/', VerifyToken, (req, res, next) => {
   var offset = req.query.page > 0 ? ((req.query.page - 1) * limit) : 0;
   var query = req.query.q ? { name: new RegExp(req.query.q, 'i') } : {};
 
-  Customers.find(query, {}, {}, (err, customers) => {
+  Customers.find(query, (err, customers) => {
     if (err) res.status(500).json(err);
 
     var data = customers.slice(offset, limit + offset);
