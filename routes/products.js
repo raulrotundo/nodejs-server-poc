@@ -20,12 +20,13 @@ router.get('/', VerifyToken, (req, res, next) => {
     if (err) res.status(500).json(err);
 
     var data = products.slice(offset, limit + offset);
-    var total_pages = Math.ceil(products.length / limit);
+    var totalPages = Math.ceil(products.length / limit);
+    var page = req.query.page || 1;
 
     res.status(200).json({
-      total_pages: total_pages,
+      total_pages: totalPages,
       total_rows: products.length,
-      page: req.query.page,
+      page: page,
       items_per_page: limit,
       data: data
     });
